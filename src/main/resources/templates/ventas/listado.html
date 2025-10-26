@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Promhil</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<div class="card shadow-lg">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-10">
+						<h1 class="card-title">Listado de ventas</h1>
+					</div>
+					<div class="col-md-2">
+						<a th:href="@{/ventas/nuevo}" class="btn btn-success w-100"> <i class="fa-solid fa-plus"></i>
+							Nuevo
+						</a>
+					</div>
+				</div>
+				<table class="table table-hover table-responsive">
+					<thead class="table-dark text-center">
+						<tr>
+							<th>Id</th>
+							<th>Producto</th>
+							<th>Stock</th>
+							<th>Precio</th>
+							<th>Categoría</th>
+							<th>Activo</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>		|	
+					<tbody class="table-secondary">
+						<tr th:each="item: ${lstProducto}">
+							<td th:text="${item.idProducto}" class="text-center"></td>
+							<td th:text="${item.nombreProducto}" class="text-center"></td>
+							<td th:text="${item.stock}" class="text-end"></td>
+							<td th:text="|S/. ${item.precio}|" class="text-end"></td>
+							<td th:text="${item.categoria.descripcion}"></td>
+							<td class="text-center">
+								<span class="badge" 
+									th:classappend="${item.estado} ? ' bg-success' : ' bg-secondary'"
+									th:text="${item.estado} ? 'Activo' : 'Inactivo'">
+								</span>
+							</td>
+							<td class="d-flex justify-content-around">
+								<a th:href="@{/ventas/edicion/{id}(id=${item.idProducto})}" class="btn btn-outline-secondary" title="Editar"
+									aria-label="Editar estudiante" role="button">
+									<i class="fa-regular fa-pen-to-square"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<th:block th:utext="${toast}"><
+</body>
+
+</html>
