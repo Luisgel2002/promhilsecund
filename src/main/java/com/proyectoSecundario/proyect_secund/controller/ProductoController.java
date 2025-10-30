@@ -14,7 +14,6 @@ import com.proyectoSecundario.proyect_secund.Service.CategoriaService;
 import com.proyectoSecundario.proyect_secund.Service.ProductoService;
 import com.proyectoSecundario.proyect_secund.Service.VentasService;
 import com.proyectoSecundario.proyect_secund.model.Productos;
-import com.proyectoSecundario.proyect_secund.model.Ventas;
 import com.proyectoSecundario.proyect_secund.util.Alert;
 
 @Controller
@@ -50,7 +49,7 @@ public class ProductoController {
 		if (!response.success) {
 			model.addAttribute("alert",Alert.sweetAlertError(response.mensaje));
 			model.addAttribute("lstCategoria",categoriaService.getAll());
-			model.addAttribute("lstVentas",ventasService.getAll());
+			model.addAttribute("lstProducto",productoService.getAll());
 			return "ventas/nuevo";
 			
 		}
@@ -61,7 +60,6 @@ public class ProductoController {
 	@GetMapping("edicion/{id}")
 	public String edicion(@PathVariable Integer id,Model model) {
 		model.addAttribute("lstCategoria",categoriaService.getAll());
-		model.addAttribute("lstProveedor",ventasService.getAll());
 		model.addAttribute("producto",productoService.getOne(id));
 		return "ventas/edicion";
 	}
@@ -73,11 +71,11 @@ public class ProductoController {
 		if (!response.success) {
 			model.addAttribute("alert",Alert.sweetAlertError(response.mensaje));
 			model.addAttribute("lstCategoria",categoriaService.getAll());
-			model.addAttribute("lstProductos",productoService.getAll());
 			return "ventas/nuevo";
 			
 		}
 		flash.addFlashAttribute("toast",Alert.sweetToast(response.mensaje,"success" , 5000));
 		return "redirect:/ventas/listado";
 	}
+	
 }

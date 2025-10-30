@@ -40,7 +40,5 @@ public class Productos {
     @Column(name = "estado")
     private Boolean estado ;
     
-    public String toString() {
-        return nombreProducto;
-    }
+   
 }

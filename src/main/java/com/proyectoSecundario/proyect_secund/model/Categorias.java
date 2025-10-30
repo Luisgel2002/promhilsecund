@@ -13,12 +13,10 @@ import lombok.Setter;
 
 @Entity
 @Table (name="categorias")
-@DynamicInsert
 @Getter @Setter
 public class Categorias {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
     private Integer idCategoria;
 

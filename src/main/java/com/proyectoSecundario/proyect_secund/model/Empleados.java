@@ -14,7 +14,8 @@ import lombok.Setter;
 @Entity
 @Table (name="empleados")
 @DynamicInsert
-@Getter @Setter
+@Getter
+@Setter
 public class Empleados {
 
 	    @Id
@@ -30,6 +31,9 @@ public class Empleados {
 
 	    @Column(name = "correo")
 	    private String correo;
+	    
+	    @Column(name="activo")
+	    private Boolean activo;
 
 	    @Column(name = "telefono_emple")
 	    private String telefono;
